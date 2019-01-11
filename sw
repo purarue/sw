@@ -2,10 +2,9 @@
 
 # Usage:
 # sw
-#  - start a stopwatch from 0, save start time
-# sw [-r|--resume]
-#  - start a stopwatch from the last saved start time (or current time if no last saved start time exists)
-#  - "-r" stands for --resume
+#  - starts a stopwatch
+#  - press any alphanumeric key to stop
+
 
 function finish {
   tput cnorm # Restore cursor
@@ -18,7 +17,7 @@ trap finish EXIT
 hash gdate 2>/dev/null
 USE_GNU_DATE=$?
 function datef {
-    if [[ $USE_GNU_DATE == "0" ]]; then 
+    if [[ $USE_GNU_DATE == "0" ]]; then
         gdate "$@"
     else
         date "$@"
@@ -34,17 +33,7 @@ else
 fi
 
 tput civis # hide cursor
-
-# If -r is passed, use saved start time from ~/.sw
-if [[ "$1" == "-r" || "$1" == "--resume" ]]; then
-    if [[ ! -f $HOME/.sw ]]; then
-        datef +%s > $HOME/.sw
-    fi
-    START_TIME=$(cat $HOME/.sw)
-else
-    START_TIME=$(datef +%s)
-    echo -n $START_TIME > $HOME/.sw
-fi
+START_TIME=$(datef +%s)
 
 # GNU date accepts the input date differently than BSD
 if [[ $USE_GNU_DATE == "0" ]]; then
@@ -56,6 +45,9 @@ fi
 while [ true ]; do
     STOPWATCH=$(TZ=UTC datef $DATE_INPUT $DATE_FORMAT | ( [[ "$NANOS_SUPPORTED" ]] && sed 's/.\{7\}$//' || cat ) )
     printf "\r\e%s" $STOPWATCH
-    sleep 0.03
+    if read -r -n 1 -t 1; then # if user presses anything
+        STOPWATCH=$(TZ=UTC datef $DATE_INPUT $DATE_FORMAT | ( [[ "$NANOS_SUPPORTED" ]] && sed 's/.\{7\}$//' || cat ) )
+        printf "\nFinal Time:\n\r\e%s\n" $STOPWATCH
+        exit 0
+    fi
 done
-
