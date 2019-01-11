@@ -47,7 +47,7 @@ while [ true ]; do
     printf "\r\e%s" $STOPWATCH
     if read -r -n 1 -t 1; then # if user presses anything
         STOPWATCH=$(TZ=UTC datef $DATE_INPUT $DATE_FORMAT | ( [[ "$NANOS_SUPPORTED" ]] && sed 's/.\{7\}$//' || cat ) )
-        printf "\nFinal Time:\n\r\e%s\n" $STOPWATCH
-        exit 0
+        printf "\nFinal Time:\n\e%s\n" $STOPWATCH
+        finish
     fi
 done
