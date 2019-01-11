@@ -7,17 +7,15 @@ Terminal stopwatch
 
 To install `sw` using [Sinister](https://github.com/jamesqo/sinister), run
 
-    wget -q -O - http://git.io/sinister | sh -s -- -u https://raw.githubusercontent.com/coryfklein/sw/master/sw
+    wget -q -O - http://git.io/sinister | sh -s -- -u https://raw.githubusercontent.com/seanbreckenridge/sw/master/sw
 
-Or just [download sw directly](https://raw.githubusercontent.com/coryfklein/sw/master/sw) and place it on your PATH somewhere.
+Or just [download sw directly](https://raw.githubusercontent.com/seanbreckenridge/sw/master/sw) and place it on your PATH somewhere.
 
 # Usage
 
     sw
-     - start a stopwatch from 0, save start time in ~/.sw
-    sw [-r|--resume]
-     - start a stopwatch from the last saved start time (or current time if no last saved start time exists)
-     - "-r" stands for --resume
+     - starts a stopwatch
+     - press any alphanumeric key to stop
 
 # Centiseconds
 
