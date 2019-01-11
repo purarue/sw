@@ -1,7 +1,7 @@
 # sw - <b>S</b>top<b>W</b>atch
 Terminal stopwatch
 
-![sw](https://user-images.githubusercontent.com/3503322/27557638-8a488c40-5a77-11e7-804b-3aff10df6365.gif)
+<img src="https://raw.githubusercontent.com/seanbreckenridge/sw/master/demo.gif">
 
 # Install
 
