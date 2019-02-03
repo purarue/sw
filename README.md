@@ -1,8 +1,6 @@
 # sw - <b>S</b>top<b>W</b>atch
 Terminal stopwatch
 
-<img src="https://raw.githubusercontent.com/seanbreckenridge/sw/master/demo.gif">
-
 # Install
 
 To install `sw` using [Sinister](https://github.com/jamesqo/sinister), run
