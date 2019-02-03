@@ -26,9 +26,9 @@ function datef {
 
 # Display nanoseconsd only if supported
 if datef +%N | grep -q N 2>/dev/null; then
-    DATE_FORMAT="+%H:%M:%S"
+    DATE_FORMAT="+%M:%S"
 else
-    DATE_FORMAT="+%H:%M:%S.%N"
+    DATE_FORMAT="+%M:%S.%N"
     NANOS_SUPPORTED=true
 fi
 
@@ -42,12 +42,6 @@ else
     DATE_INPUT="-v-${START_TIME}S"
 fi
 
-while [ true ]; do
-    STOPWATCH=$(TZ=UTC datef $DATE_INPUT $DATE_FORMAT | ( [[ "$NANOS_SUPPORTED" ]] && sed 's/.\{7\}$//' || cat ) )
-    printf "\r\e%s" $STOPWATCH
-    if read -r -n 1 -t 1; then # if user presses anything
-        STOPWATCH=$(TZ=UTC datef $DATE_INPUT $DATE_FORMAT | ( [[ "$NANOS_SUPPORTED" ]] && sed 's/.\{7\}$//' || cat ) )
-        printf "\nFinal Time:\n\e%s\n" $STOPWATCH
-        finish
-    fi
-done
+read -r -n 1 # wait for one character
+STOPWATCH=$(TZ=UTC datef $DATE_INPUT $DATE_FORMAT | ( [[ "$NANOS_SUPPORTED" ]] && sed 's/.\{7\}$//' || cat ) )
+printf "\rTime: %s\n" $STOPWATCH
