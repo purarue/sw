@@ -5,9 +5,9 @@ Terminal stopwatch
 
 To install `sw` using [Sinister](https://github.com/jamesqo/sinister), run
 
-    wget -q -O - http://git.io/sinister | sh -s -- -u https://raw.githubusercontent.com/seanbreckenridge/sw/master/sw
+    wget -q -O - http://git.io/sinister | sh -s -- -u https://raw.githubusercontent.com/purarue/sw/master/sw
 
-Or just [download sw directly](https://raw.githubusercontent.com/seanbreckenridge/sw/master/sw) and place it on your PATH somewhere.
+Or just [download sw directly](https://raw.githubusercontent.com/purarue/sw/master/sw) and place it on your PATH somewhere.
 
 # Usage
 
